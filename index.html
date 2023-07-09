@@ -108,6 +108,9 @@
 
                     document.getElementById("txtTotalQtyinLtr").value= "";
                     document.getElementById("txtTotalAmount").value= "";
+
+                    document.getElementById("txtTM500QtyinLtr").value= "";
+                    document.getElementById("txtTM500Amount").value= "";
         }
 
         function updateAmount(moneyValue, moneyQty, target){
@@ -157,6 +160,8 @@
             getPrice(document.getElementById("txtFCM1000QtyinLtr").value,'FCM1000');
             getPrice(document.getElementById("txtSM500QtyinLtr").value,'SM500');
             getPrice(document.getElementById("txtSM200inLtr").value,'SM200');
+            getPrice(document.getElementById("txtTM500QtyinLtr").value,'TM500');
+            
         }
         function doTotal(){
                 doAllPriceTotal();
@@ -166,6 +171,10 @@
                 var txtFCM1000Amount    =0.0;
                 var txtSM200inLtr       =0.0;
                 var txtSM200Amount      =0.0;
+
+                var txtTM500inLtr       =0.0;
+                var txtTM500Amount      =0.0;
+
                 var txtTotalQtyinLtr    =0.0;
                 var txtTotalAmount      =0.0;
 
@@ -185,7 +194,15 @@
                         }
 
 
-                      if(document.getElementById("txtSM200inLtr").value.trim() === "") {
+                      if(document.getElementById("txtTM500QtyinLtr").value.trim() === "") {
+                        txtSTM500inLtr =0;
+                        document.getElementById("txtTM500Amount").value ="0";
+                       }else{
+                            txtTM500inLtr    = parseFloat(document.getElementById("txtTM500QtyinLtr").value);
+                            txtTM500Amount    = parseFloat(document.getElementById("txtTM500Amount").value);
+                       }
+
+                       if(document.getElementById("txtSM200inLtr").value.trim() === "") {
                         txtSM200inLtr =0;
                         document.getElementById("txtSM200Amount").value ="0";
                        }else{
@@ -194,8 +211,9 @@
                        }
 
 
-                 txtTotalQtyinLtr    = txtSM500QtyinLtr + txtFCM1000QtyinLtr + txtSM200inLtr;
-                 txtTotalAmount      = txtSM500Amount + txtFCM1000Amount + txtSM200Amount ;
+
+                 txtTotalQtyinLtr    = txtSM500QtyinLtr + txtFCM1000QtyinLtr + txtSM200inLtr+txtTM500inLtr;
+                 txtTotalAmount      = txtSM500Amount + txtFCM1000Amount + txtSM200Amount + txtTM500Amount;
 
                 document.getElementById("txtTotalQtyinLtr").value=txtTotalQtyinLtr;
                 document.getElementById("txtTotalAmount").value=txtTotalAmount;
@@ -255,6 +273,15 @@
             <div class="col"><input id="txtSM500QtyinLtr" type="number" class="form-control font-weight-bold"  onblur="calculatePrice(this.value,'SM500')" /></div>
             <div class="col "><input id="txtSM500Amount"   value="0" class="form-control-plaintext font-weight-bold" readonly/>
                 <small id="txtSM500AmountHlp" class="form-text text-muted font-weight-bold" >Per Ltr : 44.00</small>
+            </div>
+
+        </div>
+        <div class="row">  <div class="col"> &nbsp;</div></div>
+        <div class="row">
+            <div class="col input-group-text font-weight-bold"><bold>TM 500</bold></div>
+            <div class="col"><input id="txtTM500QtyinLtr" type="number" class="form-control font-weight-bold"  onblur="calculatePrice(this.value,'TM500')" /></div>
+            <div class="col "><input id="txtTM500Amount"   value="0" class="form-control-plaintext font-weight-bold" readonly/>
+                <small id="txtTM500AmountHlp" class="form-text text-muted font-weight-bold" >Per Ltr : 40.00</small>
             </div>
 
         </div>
